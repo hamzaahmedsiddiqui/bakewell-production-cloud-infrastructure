@@ -98,22 +98,22 @@ resource "aws_route_table_association" "public_b" {
 
 ############################################
 
-# Private Route Table
-resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.this.id
+# # Private Route Table
+# resource "aws_route_table" "private" {
+#   vpc_id = aws_vpc.this.id
 
-  tags = {
-    Name = "${var.project_name}-${var.environment}-private-rt"
-  }
-}
+#   tags = {
+#     Name = "${var.project_name}-${var.environment}-private-rt"
+#   }
+# }
 
-#  Associate Private Subnets
-resource "aws_route_table_association" "private_a" {
-  subnet_id      = aws_subnet.private_a.id
-  route_table_id = aws_route_table.private.id
-}
+# #  Associate Private Subnets
+# resource "aws_route_table_association" "private_a" {
+#   subnet_id      = aws_subnet.private_a.id
+#   route_table_id = aws_route_table.private.id
+# }
 
-resource "aws_route_table_association" "private_b" {
-  subnet_id      = aws_subnet.private_b.id
-  route_table_id = aws_route_table.private.id
-}
+# resource "aws_route_table_association" "private_b" {
+#   subnet_id      = aws_subnet.private_b.id
+#   route_table_id = aws_route_table.private.id
+# }
