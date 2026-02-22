@@ -17,6 +17,7 @@ variable "environment" {
 }
 
 variable "create_iam" {
-  type    = bool
-  default = false
+  type        = bool
+  description = "Whether to create IAM roles/policies. In VocLabs this should be false."
+  default     = false
 }

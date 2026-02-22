@@ -1,14 +1,10 @@
-# data source to fetch existing S3 bucket for artifacts
-# data "aws_s3_bucket" "artifacts" {
-#   bucket = "bakewell-artifacts-prod"
-# }
 
 data "aws_iam_instance_profile" "lab" {
-  count = var.create_iam ? 0 : 1
-  name  = "LabInstanceProfile"
+  name = "LabInstanceProfile"
 }
+
 locals {
-  instance_profile_name = var.create_iam ? module.iam[0].instance_profile_name : data.aws_iam_instance_profile.lab[0].name
+  instance_profile_name = var.create_iam ? module.iam[0].instance_profile_name : data.aws_iam_instance_profile.lab.name
 }
 
 module "vpc" {
@@ -56,6 +52,6 @@ module "iam" {
   source               = "./modules/iam"
   project_name         = var.project_name
   environment          = var.environment
-  artifacts_bucket_arn = data.aws_s3_bucket.artifacts.arn
 }
 
+# Note :when you move to a real AWS account, you just run: terraform apply -var="create_iam=true" 
