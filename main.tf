@@ -26,3 +26,13 @@ module "rds" {
   private_subnet_ids = module.vpc.private_subnet_ids
   rds_sg_id          = module.security.rds_sg_id
 }
+
+module "alb" {
+  source              = "./modules/alb"
+  project_name        = var.project_name
+  environment         = var.environment
+  public_subnet_ids   = module.vpc.public_subnet_ids
+  alb_sg_id           = module.security.alb_sg_id
+  backend_instance_id = module.compute.backend_instance_id
+  vpc_id              = module.vpc.vpc_id
+}
