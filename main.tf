@@ -1,3 +1,8 @@
+# data source to fetch existing S3 bucket for artifacts
+data "aws_s3_bucket" "artifacts" {
+  bucket = "bakewell-artifacts-prod"
+}
+
 module "vpc" {
   source       = "./modules/vpc"
   project_name = var.project_name
@@ -38,12 +43,12 @@ module "alb" {
   vpc_id            = module.vpc.vpc_id
 }
 
-module "artifacts" {
-  source = "./modules/s3-artifacts"
+# module "artifacts" {
+#   source = "./modules/s3-artifacts"
 
-  project_name = var.project_name
-  environment  = var.environment
-}
+#   project_name = var.project_name
+#   environment  = var.environment
+# }
 
 module "iam" {
   source = "./modules/iam"
@@ -52,3 +57,4 @@ module "iam" {
   environment          = var.environment
   artifacts_bucket_arn = module.artifacts.bucket_arn
 }
+
