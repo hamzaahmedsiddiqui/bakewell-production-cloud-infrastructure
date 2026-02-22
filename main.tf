@@ -55,6 +55,6 @@ module "iam" {
 
   project_name         = var.project_name
   environment          = var.environment
-  artifacts_bucket_arn = module.artifacts.bucket_arn
+  artifacts_bucket_arn = data.aws_s3_bucket.artifacts.arn
 }
 
