@@ -1,3 +1,4 @@
+
 #fetch latest Amazon Linux
 data "aws_ami" "amazon_linux" {
   most_recent      = true
@@ -34,6 +35,9 @@ resource "aws_launch_template" "backend" {
 
   vpc_security_group_ids = [var.backend_sg_id]
 
+  iam_instance_profile {
+    name = var.instance_profile_name
+        }
   user_data = base64encode(<<-EOF
               #!/bin/bash
               yum update -y
@@ -52,7 +56,7 @@ resource "aws_launch_template" "backend" {
 
   tag_specifications {
     resource_type = "instance"
-
+    
     tags = {
       Name = "${var.project_name}-${var.environment}-backend"
     }

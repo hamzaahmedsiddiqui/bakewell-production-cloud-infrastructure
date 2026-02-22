@@ -12,12 +12,13 @@ module "security" {
 }
 
 module "compute" {
-  source = "./modules/compute"
-  project_name       = var.project_name
-  environment        = var.environment
-  private_subnet_ids = module.vpc.private_subnet_ids
-  backend_sg_id      = module.security.backend_sg_id
-  target_group_arn   = module.alb.target_group_arn
+  source                = "./modules/compute"
+  project_name          = var.project_name
+  environment           = var.environment
+  private_subnet_ids    = module.vpc.private_subnet_ids
+  backend_sg_id         = module.security.backend_sg_id
+  target_group_arn      = module.alb.target_group_arn
+  instance_profile_name = module.iam.instance_profile_name
 }
 
 module "rds" {
@@ -29,12 +30,12 @@ module "rds" {
 }
 
 module "alb" {
-  source              = "./modules/alb"
-  project_name        = var.project_name
-  environment         = var.environment
-  public_subnet_ids   = module.vpc.public_subnet_ids
-  alb_sg_id           = module.security.alb_sg_id
-  vpc_id              = module.vpc.vpc_id
+  source            = "./modules/alb"
+  project_name      = var.project_name
+  environment       = var.environment
+  public_subnet_ids = module.vpc.public_subnet_ids
+  alb_sg_id         = module.security.alb_sg_id
+  vpc_id            = module.vpc.vpc_id
 }
 
 module "artifacts" {
@@ -42,4 +43,12 @@ module "artifacts" {
 
   project_name = var.project_name
   environment  = var.environment
+}
+
+module "iam" {
+  source = "./modules/iam"
+
+  project_name         = var.project_name
+  environment          = var.environment
+  artifacts_bucket_arn = module.artifacts.bucket_arn
 }

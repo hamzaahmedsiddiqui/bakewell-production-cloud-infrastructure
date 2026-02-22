@@ -22,3 +22,7 @@ variable "target_group_arn" {
   description = "Target group ARN for ALB to register backend instances"
   type        = string
 }
+
+variable "instance_profile_name" {
+  type = string
+}
