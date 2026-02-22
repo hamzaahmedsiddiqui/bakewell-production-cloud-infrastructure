@@ -44,8 +44,7 @@ module "alb" {
 }
 
 module "iam" {
-  source = "./modules/iam"
-
+  source               = "./modules/iam"
   project_name         = var.project_name
   environment          = var.environment
   artifacts_bucket_arn = data.aws_s3_bucket.artifacts.arn
