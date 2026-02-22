@@ -12,7 +12,7 @@ module "security" {
 }
 
 module "compute" {
-  source             = "./modules/compute"
+  source = "./modules/compute"
   project_name       = var.project_name
   environment        = var.environment
   private_subnet_ids = module.vpc.private_subnet_ids
@@ -29,10 +29,17 @@ module "rds" {
 }
 
 module "alb" {
-  source            = "./modules/alb"
-  project_name      = var.project_name
-  environment       = var.environment
-  public_subnet_ids = module.vpc.public_subnet_ids
-  alb_sg_id         = module.security.alb_sg_id
-  vpc_id            = module.vpc.vpc_id
+  source              = "./modules/alb"
+  project_name        = var.project_name
+  environment         = var.environment
+  public_subnet_ids   = module.vpc.public_subnet_ids
+  alb_sg_id           = module.security.alb_sg_id
+  vpc_id              = module.vpc.vpc_id
+}
+
+module "artifacts" {
+  source = "./modules/s3-artifacts"
+
+  project_name = var.project_name
+  environment  = var.environment
 }
