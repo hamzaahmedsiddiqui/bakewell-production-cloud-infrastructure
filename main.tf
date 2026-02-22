@@ -1,7 +1,7 @@
 # data source to fetch existing S3 bucket for artifacts
-data "aws_s3_bucket" "artifacts" {
-  bucket = "bakewell-artifacts-prod"
-}
+# data "aws_s3_bucket" "artifacts" {
+#   bucket = "bakewell-artifacts-prod"
+# }
 
 data "aws_iam_instance_profile" "lab" {
   count = var.create_iam ? 0 : 1
