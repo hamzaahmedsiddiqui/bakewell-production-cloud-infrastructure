@@ -14,19 +14,6 @@ filter {
   }
 }
 
-# # Create EC2 instance in private subnet
-# resource "aws_instance" "backend" {
-#   ami                         = data.aws_ami.amazon_linux.id
-#   instance_type               = "t3.micro"
-#   subnet_id                   = var.private_subnet_id
-#   vpc_security_group_ids      = [var.backend_sg_id]
-#   associate_public_ip_address = false
-
-#   tags = {
-#     Name = "${var.project_name}-${var.environment}-backend"
-#   }
-# }
-
 # Launch EC2 instance using launch template
 resource "aws_launch_template" "backend" {
   name_prefix   = "${var.project_name}-${var.environment}-backend-"
@@ -34,7 +21,7 @@ resource "aws_launch_template" "backend" {
   instance_type = "t3.micro"
 
   vpc_security_group_ids = [var.backend_sg_id]
-
+    
   iam_instance_profile {
     name = var.instance_profile_name
         }

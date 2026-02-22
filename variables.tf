@@ -15,3 +15,8 @@ variable "environment" {
   type        = string
   default     = "prod"
 }
+
+variable "create_iam" {
+  type    = bool
+  default = false
+}
