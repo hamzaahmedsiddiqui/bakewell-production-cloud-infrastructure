@@ -14,10 +14,6 @@ variable "alb_sg_id" {
   type = string
 }
 
-variable "backend_instance_id" {
-  type = string
-}
-
 variable "vpc_id" {
   type = string
 }
