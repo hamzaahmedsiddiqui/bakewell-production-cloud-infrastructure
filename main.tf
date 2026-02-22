@@ -43,13 +43,6 @@ module "alb" {
   vpc_id            = module.vpc.vpc_id
 }
 
-# module "artifacts" {
-#   source = "./modules/s3-artifacts"
-
-#   project_name = var.project_name
-#   environment  = var.environment
-# }
-
 module "iam" {
   source = "./modules/iam"
 

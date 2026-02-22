@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+
 provider "aws" {
   region                      = "us-west-2"
   skip_requesting_account_id  = true
