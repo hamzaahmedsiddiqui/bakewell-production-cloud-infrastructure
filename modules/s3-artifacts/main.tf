@@ -1,6 +1,7 @@
 # Create an S3 bucket for storing build artifacts
 resource "aws_s3_bucket" "this" {
-  bucket = "${var.project_name}-artifacts-${var.environment}"
+  bucket              = "${var.project_name}-artifacts-${var.environment}"
+  object_lock_enabled = false
 
   tags = {
     Name        = "${var.project_name}-artifacts-${var.environment}"
