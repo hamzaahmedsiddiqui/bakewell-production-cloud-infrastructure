@@ -1,8 +1,6 @@
 #fetch latest Amazon Linux
 data "aws_ami" "amazon_linux" {
-  executable_users = ["self"]
   most_recent      = true
-  name_regex       = "^myami-[0-9]{3}"
   owners           = ["amazon"]
   
 filter {
