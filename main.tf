@@ -77,3 +77,13 @@ module "ecs_task" {
   db_password  = var.db_password
   db_name      = "bakewell_dev"
 }
+
+module "ecs_service" {
+  source = "./modules/ecs-service-ec2"
+
+  project_name        = var.project_name
+  environment         = var.environment
+  cluster_id          = module.ecs.cluster_id
+  task_definition_arn = module.ecs_task.task_definition_arn
+  target_group_arn    = module.alb.target_group_arn
+}

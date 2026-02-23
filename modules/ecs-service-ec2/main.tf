@@ -10,6 +10,4 @@ resource "aws_ecs_service" "backend" {
     container_name   = "backend"
     container_port   = 5050
   }
-
-  depends_on = [var.alb_listener_arn]
 }
