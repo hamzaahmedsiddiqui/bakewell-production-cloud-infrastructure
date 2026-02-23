@@ -18,7 +18,7 @@ filter {
 resource "aws_launch_template" "backend" {
   name_prefix   = "${var.project_name}-${var.environment}-backend-"
   image_id      = data.aws_ami.amazon_linux.id
-  instance_type = "t3.micro"
+  instance_type = "t3.small"
 
   vpc_security_group_ids = [var.backend_sg_id]
     
