@@ -8,3 +8,13 @@ resource "aws_ecs_cluster" "this" {
     ManagedBy   = "Terraform"
   }
 }
+
+resource "aws_cloudwatch_log_group" "ecs_logs" {
+  name              = "/ecs/bakewell-prod"
+  retention_in_days = 7
+
+  tags = {
+    Environment = "prod"
+    Project     = "bakewell"
+  }
+}

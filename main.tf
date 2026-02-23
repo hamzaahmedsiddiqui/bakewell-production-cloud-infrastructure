@@ -67,15 +67,22 @@ module "ecs" {
   environment  = var.environment
 }
 
+
+locals {
+  execution_role_arn = var.create_iam ? module.iam[0].ecs_execution_role_arn : null
+}
 module "ecs_task" {
-  source       = "./modules/ecs-task-ec2"
-  project_name = var.project_name
-  environment  = var.environment
-  image_url    = module.ecr.repository_url
-  db_host      = module.rds.db_endpoint
-  db_user      = "bakewelladmin"
-  db_password  = var.db_password
-  db_name      = "bakewell_dev"
+  source             = "./modules/ecs-task-ec2"
+  project_name       = var.project_name
+  environment        = var.environment
+  image_url          = module.ecr.repository_url
+  db_host            = module.rds.db_endpoint
+  db_user            = "bakewelladmin"
+  db_password        = var.db_password
+  db_name            = "bakewell_dev"
+  execution_role_arn = local.execution_role_arn
+  repository_url     = module.ecr.repository_url
+  log_group_name     = module.ecs.log_group_name
 }
 
 module "ecs_service" {
@@ -86,4 +93,11 @@ module "ecs_service" {
   cluster_id          = module.ecs.cluster_id
   task_definition_arn = module.ecs_task.task_definition_arn
   target_group_arn    = module.alb.target_group_arn
+}
+
+module "frontend" {
+  source       = "./modules/frontend"
+  project_name = var.project_name
+  environment  = var.environment
+  region       = var.aws_region
 }

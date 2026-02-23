@@ -9,7 +9,7 @@ terraform {
 
 
 provider "aws" {
-  region                      = "us-west-2"
+  region                      = var.aws_region
   skip_requesting_account_id  = true
   skip_credentials_validation = true
 }
