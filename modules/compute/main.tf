@@ -44,7 +44,7 @@ resource "aws_launch_template" "backend" {
 resource "aws_autoscaling_group" "backend" {
   desired_capacity     = 0
   max_size             = 2
-  min_size             = 1
+  min_size             = 0
 
   vpc_zone_identifier  = var.private_subnet_ids
 
