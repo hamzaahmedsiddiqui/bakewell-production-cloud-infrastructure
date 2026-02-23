@@ -64,14 +64,3 @@ module "ecs" {
   project_name = var.project_name
   environment  = var.environment
 }
-
-module "secrets" {
-  source       = "./modules/secrets"
-  project_name = var.project_name
-  environment  = var.environment
-
-  db_host      = module.rds.db_endpoint
-  db_user      = "bakewelladmin"
-  db_password  = "Test1234!"
-  db_name      = "bakewell_dev"
-}
