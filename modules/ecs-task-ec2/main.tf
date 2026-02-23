@@ -1,4 +1,4 @@
-resource "aws_ecs_task_definition_revision" "backend" {
+resource "aws_ecs_task_definition" "backend" {
   family                   = "${var.project_name}-${var.environment}-backend"
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
