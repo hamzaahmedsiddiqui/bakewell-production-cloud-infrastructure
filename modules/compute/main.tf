@@ -1,12 +1,12 @@
 
 #fetch latest Amazon Linux
-data "aws_ami" "amazon_linux" {
+data "aws_ami" "amazon_linux_ecs" {
   most_recent      = true
   owners           = ["amazon"]
   
 filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+    values = ["amzn2-ami-ecs-hvm-*-x86_64-ebs"]
   }
 filter {
     name   = "virtualization-type"
@@ -17,7 +17,7 @@ filter {
 # Launch EC2 instance using launch template
 resource "aws_launch_template" "backend" {
   name_prefix   = "${var.project_name}-${var.environment}-backend-"
-  image_id      = data.aws_ami.amazon_linux.id
+  image_id      = data.aws_ami.amazon_linux_ecs.id
   instance_type = "t3.small"
 
   vpc_security_group_ids = [var.backend_sg_id]
@@ -42,9 +42,9 @@ resource "aws_launch_template" "backend" {
 
 # Create an Auto Scaling Group to manage the EC2 instance
 resource "aws_autoscaling_group" "backend" {
-  desired_capacity     = 1
+  desired_capacity     = 0
   max_size             = 2
-  min_size             = 1
+  min_size             = 0
 
   vpc_zone_identifier  = var.private_subnet_ids
 
