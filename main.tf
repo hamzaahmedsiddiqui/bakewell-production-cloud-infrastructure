@@ -1,10 +1,6 @@
 
-data "aws_iam_instance_profile" "lab" {
-  name = "LabInstanceProfile"
-}
-
 locals {
-  instance_profile_name = var.create_iam ? module.iam[0].instance_profile_name : data.aws_iam_instance_profile.lab.name
+  instance_profile_name = var.create_iam ? module.iam[0].instance_profile_name : "LabInstanceProfile"
 }
 
 module "vpc" {
@@ -48,10 +44,17 @@ module "alb" {
 }
 
 module "iam" {
-  count                = var.create_iam ? 1 : 0
-  source               = "./modules/iam"
-  project_name         = var.project_name
-  environment          = var.environment
+  count        = var.create_iam ? 1 : 0
+  source       = "./modules/iam"
+  project_name = var.project_name
+  environment  = var.environment
 }
 
-# Note :when you move to a real AWS account, you just run: terraform apply -var="create_iam=true" 
+# Note: when you move to a real AWS account, run: terraform apply -var="create_iam=true" 
+
+
+module "ecr" {
+  source       = "./modules/ecr"
+  project_name = var.project_name
+  environment  = var.environment
+}
