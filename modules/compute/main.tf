@@ -42,9 +42,9 @@ resource "aws_launch_template" "backend" {
 
 # Create an Auto Scaling Group to manage the EC2 instance
 resource "aws_autoscaling_group" "backend" {
-  desired_capacity     = 0
+  desired_capacity     = 1
   max_size             = 2
-  min_size             = 0
+  min_size             = 1
 
   vpc_zone_identifier  = var.private_subnet_ids
 
