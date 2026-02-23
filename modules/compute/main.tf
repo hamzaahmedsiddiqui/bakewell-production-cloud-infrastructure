@@ -27,17 +27,7 @@ resource "aws_launch_template" "backend" {
         }
   user_data = base64encode(<<-EOF
               #!/bin/bash
-              yum update -y
-              yum install -y git nodejs npm
-
-              cd /home/ec2-user
-              git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-              cd YOUR_REPO/backend
-
-              npm install
-              npm install -g pm2
-
-              pm2 start server.js
+              echo "ECS_CLUSTER=${var.cluster_name}" >> /etc/ecs/ecs.config
               EOF
   )
 

@@ -24,6 +24,8 @@ module "compute" {
   backend_sg_id         = module.security.backend_sg_id
   target_group_arn      = module.alb.target_group_arn
   instance_profile_name = local.instance_profile_name
+  cluster_name          = module.ecs.cluster_name
+
 }
 
 module "rds" {
@@ -63,4 +65,15 @@ module "ecs" {
   source       = "./modules/ecs"
   project_name = var.project_name
   environment  = var.environment
+}
+
+module "ecs_task" {
+  source       = "./modules/ecs-task-ec2"
+  project_name = var.project_name
+  environment  = var.environment
+  image_url    = module.ecr.repository_url
+  db_host      = module.rds.db_endpoint
+  db_user      = "bakewelladmin"
+  db_password  = var.db_password
+  db_name      = "bakewell_dev"
 }

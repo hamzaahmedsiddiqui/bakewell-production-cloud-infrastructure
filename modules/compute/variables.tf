@@ -26,3 +26,8 @@ variable "target_group_arn" {
 variable "instance_profile_name" {
   type = string
 }
+
+variable cluster_name {
+    description = "ECS Cluster name to join"
+    type = string
+}

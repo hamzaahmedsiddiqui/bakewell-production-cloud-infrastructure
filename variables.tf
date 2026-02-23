@@ -21,3 +21,9 @@ variable "create_iam" {
   description = "Whether to create IAM roles/policies. In VocLabs this should be false."
   default     = false
 }
+
+variable "db_password" {
+  description = "Database password for backend"
+  type        = string
+  sensitive   = true
+}
