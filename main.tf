@@ -34,6 +34,7 @@ module "rds" {
   environment        = var.environment
   private_subnet_ids = module.vpc.private_subnet_ids
   rds_sg_id          = module.security.rds_sg_id
+  db_password        = var.db_password
 }
 
 module "alb" {

@@ -15,8 +15,31 @@ resource "aws_ecs_task_definition" "backend" {
       portMappings = [
         {
           containerPort = 5050
-          hostPort      = 0
+          hostPort      = 5050
           protocol      = "tcp"
+        }
+      ]
+
+      environment = [
+        {
+          name  = "DB_HOST"
+          value = "bakewell-prod-db.c4uo8nhbxbkf.us-west-2.rds.amazonaws.com"
+        },
+        {
+          name  = "DB_USER"
+          value = var.db_user
+        },
+        {
+          name  = "DB_PASSWORD"
+          value = var.db_password
+        },
+        {
+          name  = "DB_NAME"
+          value = var.db_name
+        },
+        {
+          name  = "DB_PORT"
+          value = "5432"
         }
       ]
 

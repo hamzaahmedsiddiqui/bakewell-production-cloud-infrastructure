@@ -18,7 +18,7 @@ resource "aws_db_instance" "this" {
   storage_encrypted       = true
 
   username                = "bakewelladmin"
-  password                = "ChangeMeSecure123!"   # Later we use secrets manager
+  password                = var.db_password   # Later we use secrets manager
   db_name                 = "bakewell_dev"
 
   db_subnet_group_name    = aws_db_subnet_group.this.name

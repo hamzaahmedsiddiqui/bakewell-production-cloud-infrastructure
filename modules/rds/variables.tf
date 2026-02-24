@@ -1,15 +1,9 @@
-variable "project_name" {
-  type = string
-}
-
-variable "environment" {
-  type = string
-}
-
+variable "project_name" {}
+variable "environment" {}
 variable "private_subnet_ids" {
   type = list(string)
 }
-
-variable "rds_sg_id" {
-  type = string
+variable "rds_sg_id" {}
+variable "db_password" {
+  sensitive = true
 }
