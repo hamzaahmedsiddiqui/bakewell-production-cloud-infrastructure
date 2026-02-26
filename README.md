@@ -151,7 +151,31 @@ This project reflects hands-on cloud engineering skills, including:
   <li>Integrating containerized applications with managed databases</li>
   <li>Understanding ECS EC2 vs Fargate architecture trade-offs</li>
 </ul>
+<hr>
 
+<h2>📘 How to Run This Project</h2>
+
+<p>
+Detailed setup and deployment instructions are available in the dedicated guide:
+</p>
+
+<p>
+👉 <a href="./HOW_TO_RUN.md"><strong>View Full Setup & Deployment Guide</strong></a>
+</p>
+
+<p>
+The guide covers:
+</p>
+
+<ul>
+  <li>Terraform initialization & deployment</li>
+  <li>Infrastructure provisioning steps</li>
+  <li>Docker image build & push to ECR</li>
+  <li>ECS service deployment</li>
+  <li>CloudWatch log verification</li>
+  <li>Application health check testing</li>
+  <li>Infrastructure teardown</li>
+</ul>
 <hr>
 
 <h2>👨‍💻 Author</h2>
