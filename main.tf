@@ -1,4 +1,3 @@
-
 locals {
   instance_profile_name = var.create_iam ? module.iam[0].instance_profile_name : "LabInstanceProfile"
 }
