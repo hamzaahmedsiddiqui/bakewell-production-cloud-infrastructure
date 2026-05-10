@@ -182,5 +182,5 @@ The guide covers:
 
 <p>
 Hamza Ahmed Siddiqui<br>
-Cloud Engineer | DevOps Enthusiast | Software Developer
+Cloud Engineer 
 </p>
