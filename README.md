@@ -182,5 +182,4 @@ The guide covers:
 
 <p>
 Hamza Ahmed Siddiqui<br>
-Cloud Engineer 
 </p>
